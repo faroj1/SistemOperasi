@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Grafik Perjalanan Head Disk Scheduling</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="trackChart" width="1200" height="600"></canvas>
+
+  <script>
+    const ctx = document.getElementById('trackChart').getContext('2d');
+
+    // Data TRACK untuk masing-masing algoritma
+    const dataPTPD = [1234, 1600, 1050, 1775, 1950, 100, 825, 75, 1300, 1450, 600, 500, 1600, 1050, 30, 1900, 2004, 700, 1300, 55, 425, 75, 700, 1600, 200];
+    
+    const dataSSTF = [1234, 1300, 1300, 1450, 1600, 1600, 1775, 1900, 1950, 2004, 1050, 1050, 825, 700, 700, 600, 500, 425, 200, 100, 75, 75, 55, 30];
+
+    const dataSCAN = [1234, 1300, 1450, 1600, 1600, 1775, 1900, 1950, 2000, 2004, 1050, 1050, 825, 700, 700, 600, 500, 425, 200, 100, 75, 75, 55, 30];
+
+    const dataLOOK = [1234, 1300, 1450, 1600, 1600, 1775, 1900, 1950, 2004, 1050, 1050, 825, 700, 700, 600, 500, 425, 200, 100, 75, 75, 55, 30];
+
+    const dataCSCAN = [1234, 1300, 1450, 1600, 1600, 1775, 1900, 1950, 2004, 2000, 0, 30, 55, 75, 75, 100, 200, 425, 500, 600, 700, 700, 1050, 1050];
+
+    const dataCLOOK = [1234, 1300, 1450, 1600, 1600, 1775, 1900, 1950, 2004, 30, 55, 75, 75, 100, 200, 425, 500, 600, 700, 700, 1050, 1050];
+
+    // Membuat grafik dengan Chart.js
+    const trackChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: Array.from({ length: 26 }, (_, i) => `Akses ${i + 1}`),  // Label urutan akses
+        datasets: [
+          {
+            label: 'PTPD (First Come First Serve)',
+            data: dataPTPD,
+            borderColor: 'blue',
+            fill: false,
+            tension: 0.3,
+            pointRadius: 4,
+            pointBackgroundColor: 'blue'
+          },
+          {
+            label: 'SSTF (Shortest Seek Time First)',
+            data: dataSSTF,
+            borderColor: 'green',
+            fill: false,
+            tension: 0.3,
+            pointRadius: 4,
+            pointBackgroundColor: 'green'
+          },
+          {
+            label: 'SCAN (Elevator)',
+            data: dataSCAN,
+            borderColor: 'purple',
+            fill: false,
+            tension: 0.3,
+            pointRadius: 4,
+            pointBackgroundColor: 'purple'
+          },
+          {
+            label: 'LOOK',
+            data: dataLOOK,
+            borderColor: 'orange',
+            fill: false,
+            tension: 0.3,
+            pointRadius: 4,
+            pointBackgroundColor: 'orange'
+          },
+          {
+            label: 'C-SCAN (Circular SCAN)',
+            data: dataCSCAN,
+            borderColor: 'red',
+            fill: false,
+            tension: 0.3,
+            pointRadius: 4,
+            pointBackgroundColor: 'red'
+          },
+          {
+            label: 'C-LOOK',
+            data: dataCLOOK,
+            borderColor: 'brown',
+            fill: false,
+            tension: 0.3,
+            pointRadius: 4,
+            pointBackgroundColor: 'brown'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          tooltip: {
+            mode: 'index',
+            intersect: false,
+          },
+          title: {
+            display: true,
+            text: 'Perjalanan Head Disk Scheduling - Algoritma PTPD, SSTF, SCAN, LOOK, C-SCAN, C-LOOK'
+          }
+        },
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text: 'Track Number'
+            },
+            min: 0,
+            max: 2100
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Urutan Akses'
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
