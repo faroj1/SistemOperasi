@@ -2,24 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Grafik Perjalanan Head Disk Scheduling</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
+    /* Mengatur body agar lebih responsif */
     body {
       font-family: Arial, sans-serif;
-      padding: 20px;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f4f4f9;
+    }
+
+    /* Kontainer utama */
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    /* Judul halaman */
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Mengatur elemen canvas agar responsif */
+    canvas {
+      width: 100%;
+      height: auto;
     }
   </style>
 </head>
 <body>
-  <canvas id="trackChart" width="1200" height="600"></canvas>
+
+  <div class="container">
+    <canvas id="trackChart" width="1200" height="600"></canvas>
+  </div>
 
   <script>
     const ctx = document.getElementById('trackChart').getContext('2d');
 
     // Data TRACK untuk masing-masing algoritma
     const dataPTPD = [1234, 1600, 1050, 1775, 1950, 100, 825, 75, 1300, 1450, 600, 500, 1600, 1050, 30, 1900, 2004, 700, 1300, 55, 425, 75, 700, 1600, 200];
-    
     const dataSSTF = [1234, 1300, 1300, 1450, 1600, 1600, 1775, 1900, 1950, 2004, 1050, 1050, 825, 700, 700, 600, 500, 425, 200, 100, 75, 75, 55, 30];
 
     const dataSCAN = [1234, 1300, 1450, 1600, 1600, 1775, 1900, 1950, 2000, 2004, 1050, 1050, 825, 700, 700, 600, 500, 425, 200, 100, 75, 75, 55, 30];
